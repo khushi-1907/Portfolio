@@ -1,0 +1,35 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              "spin-slow": "spin 30s linear infinite",
+            },
+
+            colors: {
+              darkspace: "#030014", // deep‑purple background
+              glowpurple: "#5b1ce3", // optional glow
+            },
+            animation: {
+              slowspin: "spin 6s linear infinite", // for spinning logo
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-[#030014] text-white overflow-x-hidden overflow-y-scroll">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
