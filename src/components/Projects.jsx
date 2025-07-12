@@ -10,7 +10,6 @@ const techFilters = [
   "JWT", "UI/UX", "PHP"
 ];
 
-/ Projects Data
 const allProjects = [
   // {
   //   name: "Smart Academic Planner",
