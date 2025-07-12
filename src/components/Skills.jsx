@@ -13,6 +13,8 @@ import {
   SiTailwindcss,
   SiJavascript,
   SiPostman,
+  SiBootstrap,
+  SiPhp,
 } from "react-icons/si";
 
 const skills = [
@@ -25,6 +27,8 @@ const skills = [
   { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
   { name: "Python", icon: <FaPython className="text-blue-300" /> },
   { name: "Postman", icon: <SiPostman className="text-orange-300" /> },
+  { name: "Bootstrap", icon: <SiBootstrap className="text-purple-400" /> },
+  { name: "PHP", icon: <SiPhp className="text-indigo-300" /> },
 ];
 
 export default function Skills() {
