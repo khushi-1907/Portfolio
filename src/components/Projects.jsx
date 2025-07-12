@@ -13,7 +13,8 @@ const techFilters = [
   "MongoDB",
   "PostgreSQL", 
   "JWT",
-  "UI/UX"
+  "UI/UX",
+  "PHP"
 ];
 
 // Projects Data
@@ -63,6 +64,24 @@ const allProjects = [
     tags: ["Three.js", "JavaScript", "UI/UX"],
     image: "/projects/solar_system.png"
   },
+{
+  name: "Complaint Management System",
+  desc: "Web-based portal for handling student complaints by category with incharge and principal dashboards.",
+  full: "Complaint Management System is a PHP-MySQL powered application that allows students to file complaints across categories like hostel, teaching, discipline, and misconduct. Each complaint is routed to the respective incharge, who can view, update, and resolve them. A principal user has full administrative control. The system supports status updates, secure login per role, and clean Bootstrap UI. Ideal for colleges and institutions to streamline grievance redressal workflows with clear role-based access. It is easily configurable for custom roles and deployed locally or on college intranets.",
+  link: "", // Add deployed link if available
+  github: "https://github.com/khushi-1907/Complaint-Management-System",
+  tags: ["PHP", "MySQL", "Bootstrap"],
+  image: "/projects/cms.png"
+},
+{
+  name: "Result Management System",
+  desc: "PHP-MySQL based system to manage students, branches, subjects, and results with admin dashboard.",
+  full: "Result Management System is a full-stack web application built using PHP and MySQL that allows administrators to manage students, branches, subjects, semesters, and academic results in one place. It includes features for adding, updating, deleting, and viewing students and their scores. Admins can assign subjects to branches, input marks, and view comprehensive results. The dashboard uses Bootstrap for responsive UI and Boxicons for icons. It supports Excel import, session management, and CRUD functionality across all core modules. Designed for academic institutions to maintain centralized records digitally.",
+  link: "", // Add deployed link if hosted anywhere
+  github: "https://github.com/khushi-1907/Result-management-system",
+  tags: ["PHP", "MySQL", "Bootstrap"],
+  image: "/projects/rms.png"
+},
   {
   name: "Netflix Frontend Clone",
   desc: "A sleek frontend clone of Netflix with responsive design and modern UI.",
