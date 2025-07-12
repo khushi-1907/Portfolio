@@ -12,19 +12,22 @@ const Hero = () => {
       <div className="absolute inset-0 -z-30 bg-[#030014]" />
 
       {/* 🌌 Blackhole Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute left-0 w-full min-h-[120vh] object-cover z-[-1]"
-        style={{
-          top: "calc(65px - 110vh + 50%)", // Adjusted to match smaller size
-          transform: "scaleY(-1)",
-        }}
-      >
-        <source src="/blackhole.webm" type="video/webm" />
-      </video>
+<video
+  id="hero-video"
+  autoPlay
+  muted
+  loop
+  playsInline
+  poster="/blackhole-poster.jpg"
+  preload="none"
+  className="absolute left-0 w-full min-h-[120vh] object-cover z-[-1]"
+  style={{
+    top: "calc(65px - 110vh + 50%)",
+    transform: "scaleY(-1)",
+  }}
+>
+  <source src="/blackhole.webm" type="video/webm" />
+</video>
 
       {/* ✨ Starfield Canvas (transparent) */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
