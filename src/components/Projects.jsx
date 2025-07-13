@@ -63,7 +63,7 @@ const allProjects = [
   link: "", // Add deployed link if available
   github: "https://github.com/khushi-1907/Complaint-Management-System",
   tags: ["PHP", "MySQL", "Bootstrap"],
-  image: "/projects/cms.png"
+  image: "/projects/cms.jpg"
 },
 {
   name: "Result Management System",
