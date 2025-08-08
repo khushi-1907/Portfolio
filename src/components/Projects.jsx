@@ -100,7 +100,52 @@ const allProjects = [
   github: "https://github.com/khushi-1907/Portfolio", // Update if different
   tags: ["React", "Tailwind", "Framer Motion", "UI/UX"],
   image: "/projects/portfolio.jpg" // Replace with actual path to your preview image
-}
+}, 
+{
+    name: "Momo Money Tech Adventure",
+    desc: "A web game where you eat momos to earn, shop cute, and unlock your tech dream.",
+    full: "A playful click-based game built using HTML, CSS, and JS. Players earn virtual money by eating momos, shop in a girly boutique, and unlock their dream tech internship while being motivated by quotes.",
+    link: "https://momos-money-internship.vercel.app/", // Add your live link
+    github: "https://github.com/khushi-1907/Momos-Money-Internship", // Add GitHub link
+    tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+    image: "/projects/momo_money.jpg"
+  },
+  {
+    name: "Drunk-O-Meter Bar",
+    desc: "Fun web app to track your virtual drinks and get animated drunk feedback.",
+    full: "Built using HTML, CSS, and JavaScript. Features animated drink tap, floating emojis, and humorous tipsy meter. Purely frontend, with a neon-bar aesthetic and fun UI transitions.",
+    link: "https://github.com/khushi-1907/Drunk-O-Meter/",
+    github: "https://drunk-o-meter-58lr.vercel.app",
+    tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+    image: "/projects/drunkometer.jpg"
+  },
+  {
+    name: "Life Balance Calculator",
+    desc: "Interactive personality app to visualize balance between love, friends, money, and cars.",
+    full: "Built with HTML, CSS, and JS. Features animated emojis, sliders, floating hearts, Web Share API, 20+ dynamic life profiles, and real-time feedback with character analysis.",
+    link: "https://life-balance-simulator.vercel.app/", // Add live demo
+    github: "https://github.com/khushi-1907/Life-Balance-Simulator", // Add repo
+    tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+    image: "/projects/life_balance.jpg"
+  },
+  {
+    name: "Love Potion No. 7",
+    desc: "A magical BTS + Hogwarts experience with love quizzes, spells, and sparkles.",
+    full: "Single-page web app combining BTS fandom and Harry Potter universe. Includes a soulmate quiz, love calculator, and letter generator with glittery effects, custom cursor, and romantic theming.",
+    link: "https://bts-harry-potter.vercel.app/", // Add live demo
+    github: "https://github.com/khushi-1907/BTS_HarryPotter", // Add repo
+    tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+    image: "/projects/love_potion.jpg"
+  },
+  {
+    name: "The Trifecta of Joy",
+    desc: "Celebrate dance, sleep, and books with fun energy mechanics and animations.",
+    full: "Interactive HTML/CSS/JS site themed around balancing energy. Includes dance animations, sleep recharge, book recs, rotating facts, emoji feedback, and energy bar logic.",
+    link: "https://books-sleep-dance.vercel.app/", // Add live demo
+    github: "https://github.com/khushi-1907/Books-Sleep-Dance", // Add repo
+    tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+    image: "/projects/trifecta_joy.jpg"
+  }
 
 ];
 
