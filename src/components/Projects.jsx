@@ -7,19 +7,22 @@ import StarsCanvas from "./StarsCanvas";
 // Filters
 const techFilters = [
   "All", "MERN", "Django", "React", "MongoDB", "PostgreSQL", 
-  "JWT", "UI/UX", "PHP"
+  "JWT", "UI/UX", "PHP", "AI", "Three.js", "JavaScript", "HTML", "CSS"
 ];
 
 const allProjects = [
-  // {
-  //   name: "Smart Academic Planner",
-  //   desc: "AI task manager with reminders, weekly insights, and categorized uploads.",
-  //   full: "MERN + HuggingFace-powered planner with JWT, cron-based reminders, and file categorization.",
-  //   link: "#",
-  //   github: "#",
-  //   tags: ["MERN", "AI", "MongoDB"],
-  //   image: "/projects/planner.png",
-  // },
+// TaskRadar project card
+{
+  name: "TaskRadar",
+  desc: "Smart MERN planner with AI tips, drag-and-drop weekly view, Pomodoro, notes, and productivity analytics.",
+  full:
+    "Full-stack productivity app built with MERN, Vite + Tailwind. Features JWT auth, protected APIs, DnD weekly planner, Pomodoro timer, sticky notes, charts, focus music, and AI insights/summaries via OpenRouter + Hugging Face. Designed for students/pros to plan, track, and stay in flow. Cron-ready for email reminders; roadmap includes streak goals, quotes, and study groups.",
+  link: "https://task-radar.vercel.app/",         // Live Demo
+  github: "https://github.com/khushi-1907/taskradar",       // GitHub Repo
+  tags: ["MERN","MongoDB","React","JWT","AI"],
+  image: "/projects/taskradar.png",
+},
+
   // {
   //   name: "EventX System",
   //   desc: "College event platform with QR check-in, analytics, and role dashboards.",
@@ -44,7 +47,7 @@ const allProjects = [
     full: "RosyWrite Notepad is a secure, minimalistic MERN stack note-taking application designed for personal productivity. It features user authentication with JWT, a responsive and clean UI, autosave functionality, and full CRUD operations for personal notes. Each user has a private dashboard where their notes are encrypted and accessible only after login. It supports persistent storage, secure logout, and mobile responsiveness for on-the-go writing. Deployed on Render, RosyWrite focuses on data privacy and user-centric simplicity, with plans for smart AI tagging and daily reminder integrations.",
     link: "https://rosywrite-notepad.onrender.com",
     github: "https://github.com/khushi-1907/RosyWrite-Notepad",
-    tags: ["MERN", "JWT", "MongoDB", "Auth"],
+    tags: ["Node.js", "JWT", "MongoDB", "UI/UX"],
     image: "/projects/rosywrite.jpg"
   },
   {
@@ -98,18 +101,18 @@ const allProjects = [
   full: "This portfolio is a fully responsive, modern web app built with React, Tailwind CSS, Framer Motion, and React Parallax Tilt. It features scroll-based animations, magnetic hover effects, animated skill tiles in a responsive triangle layout, and a cosmic theme with a starry canvas background. The site showcases About, Skills, Projects, and a 'Connect With Me' section — all styled with a purple-cyan gradient and glassmorphic UI. It reflects a strong design aesthetic combined with performance optimization and modular, component-based architecture. Ideal for hiring managers and collaborators to explore technical skills and past work.",
   link: "#", // Your live portfolio link
   github: "https://github.com/khushi-1907/Portfolio", // Update if different
-  tags: ["React", "Tailwind", "Framer Motion", "UI/UX"],
+  tags: ["React", "Tailwind", "UI/UX"],
   image: "/projects/portfolio.jpg" // Replace with actual path to your preview image
 }, 
-{
-    name: "Momo Money Tech Adventure",
-    desc: "A web game where you eat momos to earn, shop cute, and unlock your tech dream.",
-    full: "A playful click-based game built using HTML, CSS, and JS. Players earn virtual money by eating momos, shop in a girly boutique, and unlock their dream tech internship while being motivated by quotes.",
-    link: "https://momos-money-internship.vercel.app/", // Add your live link
-    github: "https://github.com/khushi-1907/Momos-Money-Internship", // Add GitHub link
-    tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
-    image: "/projects/momo_money.jpg"
-  },
+// {
+//     name: "Momo Money Tech Adventure",
+//     desc: "A web game where you eat momos to earn, shop cute, and unlock your tech dream.",
+//     full: "A playful click-based game built using HTML, CSS, and JS. Players earn virtual money by eating momos, shop in a girly boutique, and unlock their dream tech internship while being motivated by quotes.",
+//     link: "https://momos-money-internship.vercel.app/", // Add your live link
+//     github: "https://github.com/khushi-1907/Momos-Money-Internship", // Add GitHub link
+//     tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+//     image: "/projects/momo_money.jpg"
+//   },
   {
     name: "Drunk-O-Meter Bar",
     desc: "Fun web app to track your virtual drinks and get animated drunk feedback.",
@@ -128,24 +131,24 @@ const allProjects = [
     tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
     image: "/projects/life_balance.jpg"
   },
-  {
-    name: "Love Potion No. 7",
-    desc: "A magical BTS + Hogwarts experience with love quizzes, spells, and sparkles.",
-    full: "Single-page web app combining BTS fandom and Harry Potter universe. Includes a soulmate quiz, love calculator, and letter generator with glittery effects, custom cursor, and romantic theming.",
-    link: "https://bts-harry-potter.vercel.app/", // Add live demo
-    github: "https://github.com/khushi-1907/BTS_HarryPotter", // Add repo
-    tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
-    image: "/projects/love_potion.jpg"
-  },
-  {
-    name: "The Trifecta of Joy",
-    desc: "Celebrate dance, sleep, and books with fun energy mechanics and animations.",
-    full: "Interactive HTML/CSS/JS site themed around balancing energy. Includes dance animations, sleep recharge, book recs, rotating facts, emoji feedback, and energy bar logic.",
-    link: "https://books-sleep-dance.vercel.app/", // Add live demo
-    github: "https://github.com/khushi-1907/Books-Sleep-Dance", // Add repo
-    tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
-    image: "/projects/trifecta_joy.jpg"
-  }
+  // {
+  //   name: "Love Potion No. 7",
+  //   desc: "A magical BTS + Hogwarts experience with love quizzes, spells, and sparkles.",
+  //   full: "Single-page web app combining BTS fandom and Harry Potter universe. Includes a soulmate quiz, love calculator, and letter generator with glittery effects, custom cursor, and romantic theming.",
+  //   link: "https://bts-harry-potter.vercel.app/", // Add live demo
+  //   github: "https://github.com/khushi-1907/BTS_HarryPotter", // Add repo
+  //   tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+  //   image: "/projects/love_potion.jpg"
+  // },
+  // {
+  //   name: "The Trifecta of Joy",
+  //   desc: "Celebrate dance, sleep, and books with fun energy mechanics and animations.",
+  //   full: "Interactive HTML/CSS/JS site themed around balancing energy. Includes dance animations, sleep recharge, book recs, rotating facts, emoji feedback, and energy bar logic.",
+  //   link: "https://books-sleep-dance.vercel.app/", // Add live demo
+  //   github: "https://github.com/khushi-1907/Books-Sleep-Dance", // Add repo
+  //   tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+  //   image: "/projects/trifecta_joy.jpg"
+  // }
 
 ];
 
