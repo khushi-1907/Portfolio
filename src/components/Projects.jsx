@@ -7,7 +7,7 @@ import StarsCanvas from "./StarsCanvas";
 // Filters
 const techFilters = [
   "All", "MERN", "Django", "React", "MongoDB", "PostgreSQL", 
-  "JWT", "UI/UX", "PHP", "AI", "Three.js", "JavaScript", "HTML", "CSS"
+  "JWT", "UI/UX", "PHP", "AI", "Three.js", "JavaScript", "HTML", "CSS","Next.js","TypeScript","Crypto"
 ];
 
 const allProjects = [
@@ -41,6 +41,16 @@ const allProjects = [
     tags: ["React", "Django", "PostgreSQL", "JWT"],
     image: "/projects/taskvault.jpg"
   },
+  {
+  name: "Password Vault",
+  desc: "Next.js-based password generator and secure vault with encryption.",
+  full: "Password Vault is a modern and secure web application built with Next.js, TypeScript, and MongoDB. It allows users to generate strong, random passwords and safely store them in an encrypted vault. Each vault entry is securely encrypted and decrypted using custom crypto logic, ensuring complete data privacy. The sleek dark-themed interface, built with TailwindCSS, offers a smooth and responsive user experience. Authentication is managed through JWT-based sessions, providing secure access to personal password data. The app demonstrates a perfect balance between usability, performance, and robust security — deployed on Vercel for effortless accessibility.",
+  link: "https://password-vault-silk.vercel.app/login",
+  github: "https://github.com/khushi-1907/Password-Vault",
+  tags: ["Next.js", "TypeScript", "MongoDB", "Crypto", "JWT"],
+  image: "/projects/passwordvault.jpg"
+}
+,
   {
     name: "RosyWrite Notepad",
     desc: "Secure, distraction-free notes app with JWT auth and user dashboard.",
@@ -131,15 +141,15 @@ const allProjects = [
     tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
     image: "/projects/life_balance.jpg"
   },
-  // {
-  //   name: "Love Potion No. 7",
-  //   desc: "A magical BTS + Hogwarts experience with love quizzes, spells, and sparkles.",
-  //   full: "Single-page web app combining BTS fandom and Harry Potter universe. Includes a soulmate quiz, love calculator, and letter generator with glittery effects, custom cursor, and romantic theming.",
-  //   link: "https://bts-harry-potter.vercel.app/", // Add live demo
-  //   github: "https://github.com/khushi-1907/BTS_HarryPotter", // Add repo
-  //   tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
-  //   image: "/projects/love_potion.jpg"
-  // },
+  {
+    name: "Love Potion No. 7",
+    desc: "A magical BTS + Hogwarts experience with love quizzes, spells, and sparkles.",
+    full: "Single-page web app combining BTS fandom and Harry Potter universe. Includes a soulmate quiz, love calculator, and letter generator with glittery effects, custom cursor, and romantic theming.",
+    link: "https://bts-harry-potter.vercel.app/", // Add live demo
+    github: "https://github.com/khushi-1907/BTS_HarryPotter", // Add repo
+    tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
+    image: "/projects/love_potion.jpg"
+  },
   // {
   //   name: "The Trifecta of Joy",
   //   desc: "Celebrate dance, sleep, and books with fun energy mechanics and animations.",

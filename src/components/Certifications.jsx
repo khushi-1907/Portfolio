@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import StarsCanvas from "./StarsCanvas";
 
 // Filters
-const certFilters = ["All", "Virtual Experience", "Training", "Soft Skills", "Certification"];
+const certFilters = ["All", "Virtual Experience", "Training", "Soft Skills", "Certification","Hackathon"];
 
 const allCerts = [
   {
@@ -40,7 +40,7 @@ const allCerts = [
     tags: ["Virtual Experience"],
     link: "https://drive.google.com/file/d/1rWSwumozNdU1lkXeoTy_kNYnQ7QlGXDd/view?usp=drive_link",
   },
-    {
+  {
     name: "Python Training",
     org: "Infowiz Software Solutions",
     year: "2024",
@@ -48,6 +48,32 @@ const allCerts = [
     tags: ["Training"],
     link: "",
   },
+  {
+  name: "Prompt Engineering Course",
+  org: "Infosys | Springboard",
+  year: "September 2025",
+  desc: "Completed a comprehensive course on Prompt Engineering, gaining skills in crafting effective prompts and optimizing interactions with AI models.",
+  tags: ["Certification"],
+  link: "https://drive.google.com/file/d/1mznW_0PRGnd0VGbblOKBEfM9YYphkxnM/view?usp=sharing", // optional: replace with your unique certificate verification link
+},
+{
+  name: "World Computer Hacker League (WCHL) 2025 - Regional Round Qualifier",
+  org: "BlockseBlock in collaboration with ICP India",
+  year: "October 2025",
+  desc: "Qualified for the Regional Round of the World Computer Hacker League (WCHL) 2025, showcasing innovation, teamwork, and problem-solving skills in competitive hackathon challenges.",
+  tags: ["Hackathon"],
+  link: "https://drive.google.com/file/d/1IeP-9ZcQ1c-UrYQ6egGE632vGyqS2zfu/view?usp=sharing", // add certificate link or post link if available
+},
+{
+  name: "Introduction to Career Skills in Software Development",
+  org: "LinkedIn Learning",
+  year: "August 2025",
+  desc: "Completed a course covering software development fundamentals, career management, and essential technical career skills for professional growth.",
+  tags: ["Soft Skills", "Training"],
+  link: "https://drive.google.com/file/d/18C6LgJxUepZ04v7GUr_uigCMbsQu8gVc/view?usp=sharing", // add LinkedIn certificate link if available
+},
+
+
 ];
 
 export default function Certifications() {
