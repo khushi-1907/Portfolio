@@ -4,12 +4,13 @@ import Tilt from "react-parallax-tilt";
 import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
 import StarsCanvas from "./StarsCanvas";
 
-// Filters
+// Filters (Confirmed to be correct)
 const techFilters = [
   "All", "MERN", "Django", "React", "MongoDB", "PostgreSQL",
   "JWT", "UI/UX", "PHP", "AI", "Three.js", "JavaScript", "HTML", "CSS","Next.js","TypeScript","Crypto"
 ];
 
+// Your Project Data
 const allProjects = [
 // TaskRadar project card
 {
@@ -148,12 +149,18 @@ const ProjectCard = ({ proj, onClick, i }) => {
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      exit="hidden" // Ensure smooth exit when filtering
+      exit="hidden" 
       role="button"
       aria-label={`View details for ${proj.name}`}
       whileHover={{ scale: 1.03 }}
       className="group relative border border-white/10 bg-white/5 rounded-xl overflow-hidden shadow-xl backdrop-blur-md transition hover:shadow-purple-500/20 cursor-pointer h-full"
-      onClick={() => onClick(proj)}
+      // Primary click handler: Only triggers modal if an anchor tag wasn't the target
+      onClick={(e) => {
+        // Prevent modal from opening if the user clicked the link/icon itself
+        if (e.target.tagName !== 'A' && e.target.closest('a') === null) {
+            onClick(proj);
+        }
+      }}
     >
       <img
         loading="lazy"
@@ -179,32 +186,32 @@ const ProjectCard = ({ proj, onClick, i }) => {
           </div>
         </div>
         
-        {/* === LIVE/GITHUB LINKS (Styled as buttons) === */}
-        <div className="flex justify-start gap-4 items-center mt-4">
-          {/* Live Link Button */}
+        {/* === LIVE/GITHUB LINKS (FIXED to work on the card) === */}
+        <div className="flex justify-start gap-4 items-center mt-4 text-sm font-medium">
+          {/* Live Link */}
           {proj.link && (
             <a
               href={proj.link}
-              onClick={(e) => e.stopPropagation()}
+              // CRITICAL FIX 1: Stop event from bubbling up and triggering the modal
+              onClick={(e) => e.stopPropagation()} 
               target="_blank"
               rel="noopener noreferrer"
-              // Correct button styling
-              className="inline-flex items-center gap-2 text-purple-300 bg-purple-600/20 hover:bg-purple-600/40 px-3 py-1 rounded-lg text-sm transition duration-200 border border-purple-500/50"
+              className="inline-flex items-center gap-2 text-purple-300 hover:text-white transition duration-200"
             >
-              <FaExternalLinkAlt size={12} /> Live
+              <FaExternalLinkAlt size={14} /> Live Demo
             </a>
           )}
-          {/* GitHub Link Button */}
+          {/* GitHub Link */}
           {proj.github && (
             <a
               href={proj.github}
-              onClick={(e) => e.stopPropagation()}
+              // CRITICAL FIX 2: Stop event from bubbling up and triggering the modal
+              onClick={(e) => e.stopPropagation()} 
               target="_blank"
               rel="noopener noreferrer"
-              // Correct button styling
-              className="inline-flex items-center gap-2 text-gray-300 bg-gray-700/30 hover:bg-gray-700/50 px-3 py-1 rounded-lg text-sm transition duration-200 border border-gray-500/50"
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition duration-200" 
             >
-              <FaGithub size={14} /> Code
+              <FaGithub size={14} /> View Code
             </a>
           )}
         </div>
@@ -238,96 +245,81 @@ export default function Projects() {
       id="projects"
       className="relative text-white px-4 sm:px-8 py-24 z-10 bg-[#030014] min-h-screen"
     >
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
+      {/* Background - CRITICAL FIX 1: pointer-events-none to prevent background from blocking clicks */}
+      <div className="absolute inset-0 -z-10 pointer-events-none"> 
         <StarsCanvas />
         <div className="absolute inset-0 bg-[#030014]/90 backdrop-blur-sm" />
       </div>
 
-      {/* Heading */}
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-14"
-      >
-        <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">
-          What I've Built
-        </p>
-        <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-500">
-          Projects
-        </h2>
-      </motion.div>
-
-      {/* Filters - FIX APPLIED: Removed whileInView animation */}
-      <div
-        className="flex flex-wrap justify-center gap-3 mb-14"
-      >
-        {techFilters.map((filter) => (
-          <motion.button
-            key={filter}
-            onClick={() => setActiveFilter(filter)}
-            className={`px-4 py-1.5 text-sm rounded-full border transition duration-300
-              ${
-                activeFilter === filter
-                  ? "bg-purple-500/30 text-purple-300 border-purple-500"
-                  : "text-gray-400 border-purple-500/30 hover:bg-purple-500/10"
-              }`}
-            // Added simple pulse animation on active filter
-            animate={
-              activeFilter === filter
-                ? {
-                    scale: [1, 1.05, 1],
-                    boxShadow: [
-                      "0 0 0px rgba(128, 90, 213, 0)",
-                      "0 0 8px rgba(128, 90, 213, 0.6)",
-                      "0 0 0px rgba(128, 90, 213, 0)",
-                    ],
-                  }
-                : { scale: 1, boxShadow: "none" }
-            }
-            transition={{
-              duration: 1.2,
-              repeat: activeFilter === filter ? Infinity : 0,
-              repeatType: "loop",
-              ease: "easeInOut",
-            }}
-            whileTap={{ scale: 0.95 }}
-            aria-pressed={activeFilter === filter}
-            aria-label={`Filter projects by ${filter}`}
-          >
-            {filter}
-          </motion.button>
-        ))}
-      </div>
-
-      {/* Projects Grid Container (Filter logic intact) */}
-      <AnimatePresence mode="wait">
+      {/* Main Content Wrapper - Set above the background layer */}
+      <div className="relative z-20"> 
+        
+        {/* Heading (Animation retained) */}
         <motion.div
-            key={activeFilter}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-          {filteredProjects.map((proj, i) => (
-            <Tilt 
-              key={proj.name}
-              tiltMaxAngleX={5} 
-              tiltMaxAngleY={5} 
-              perspective={1000} 
-              scale={1}
-              className="h-full"
-            >
-              <ProjectCard proj={proj} onClick={setSelected} i={i} />
-            </Tilt>
-          ))}
+          <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">
+            What I've Built
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-500">
+            Projects
+          </h2>
         </motion.div>
-      </AnimatePresence>
 
-      {/* Modal */}
+        {/* Filters - Confirmed correct and outside of click-blocking containers */}
+        <div className="flex flex-wrap justify-center gap-3 mb-14">
+          {techFilters.map((filter) => (
+            <motion.button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-4 py-1.5 text-sm rounded-full border transition duration-300
+                ${
+                  activeFilter === filter
+                    ? "bg-purple-500/30 text-purple-300 border-purple-500"
+                    : "text-gray-400 border-purple-500/30 hover:bg-purple-500/10"
+                }`}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              aria-pressed={activeFilter === filter}
+              aria-label={`Filter projects by ${filter}`}
+            >
+              {filter}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Projects Grid Container */}
+        <AnimatePresence mode="wait">
+          <motion.div
+              key={activeFilter}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+          >
+            {filteredProjects.map((proj, i) => (
+              <Tilt 
+                key={proj.name}
+                tiltMaxAngleX={5} 
+                tiltMaxAngleY={5} 
+                perspective={1000} 
+                scale={1}
+                className="h-full"
+              >
+                <ProjectCard proj={proj} onClick={setSelected} i={i} />
+              </Tilt>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div> 
+      {/* End of Main Content Wrapper */}
+
+      {/* Modal (Links are here for redundancy/full info, but are also on the card) */}
       <AnimatePresence>
         {selected && (
           <motion.div
@@ -359,24 +351,31 @@ export default function Projects() {
                 {selected.name}
               </h3>
               <p className="text-gray-300 text-sm mb-6">{selected.full}</p>
+              
+              {/* Modal Links (Mirroring card links) */}
               <div className="flex gap-4">
-                <a
-                  href={selected.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-purple-500 px-4 py-2 rounded text-sm text-white font-semibold"
-                >
-                  Live
-                </a>
-                <a
-                  href={selected.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-800 px-4 py-2 rounded text-sm text-white"
-                >
-                  Code
-                </a>
+                {selected.link && (
+                    <a
+                      href={selected.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-purple-300 hover:text-white text-sm font-semibold"
+                    >
+                       <FaExternalLinkAlt size={14} /> Live Demo
+                    </a>
+                )}
+                {selected.github && (
+                    <a
+                      href={selected.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm"
+                    >
+                       <FaGithub size={14} /> View Code
+                    </a>
+                )}
               </div>
+              
             </motion.div>
           </motion.div>
         )}
