@@ -136,7 +136,6 @@ const allProjects = [
 
 // Project Card component
 const ProjectCard = ({ proj, onClick, i }) => {
-  // Simple fade-in and subtle lift animation, not dependent on scroll
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3, delay: i * 0.05 } },
@@ -148,7 +147,7 @@ const ProjectCard = ({ proj, onClick, i }) => {
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      exit="hidden" // Ensure smooth exit when filtering
+      exit="hidden"
       role="button"
       aria-label={`View details for ${proj.name}`}
       whileHover={{ scale: 1.03 }}
@@ -163,7 +162,7 @@ const ProjectCard = ({ proj, onClick, i }) => {
         alt={proj.name}
         className="w-full h-44 object-cover group-hover:scale-105 transition duration-300"
       />
-      <div className="p-5 flex flex-col justify-between h-full">
+      <div className="p-5 flex flex-col h-full">
         <div>
           <h3 className="text-xl font-semibold mb-1">{proj.name}</h3>
           <p className="text-sm text-gray-300 mb-3">{proj.desc}</p>
@@ -178,41 +177,43 @@ const ProjectCard = ({ proj, onClick, i }) => {
             ))}
           </div>
         </div>
-        
-        {/* === START: LIVE/GITHUB LINKS FIX (Added styling) === */}
-        <div className="flex justify-start gap-4 items-center mt-4">
-          {/* Live Link Button */}
-          {proj.link && (
-            <a
-              href={proj.link}
-              onClick={(e) => e.stopPropagation()}
-              target="_blank"
-              rel="noopener noreferrer"
-              // Added button styling classes
-              className="inline-flex items-center gap-2 text-purple-300 bg-purple-600/20 hover:bg-purple-600/40 px-3 py-1 rounded-lg text-sm transition duration-200 border border-purple-500/50"
-            >
-              <FaExternalLinkAlt size={12} /> Live
-            </a>
-          )}
-          {/* GitHub Link Button */}
-          {proj.github && (
-            <a
-              href={proj.github}
-              onClick={(e) => e.stopPropagation()}
-              target="_blank"
-              rel="noopener noreferrer"
-              // Added button styling classes
-              className="inline-flex items-center gap-2 text-gray-300 bg-gray-700/30 hover:bg-gray-700/50 px-3 py-1 rounded-lg text-sm transition duration-200 border border-gray-500/50"
-            >
-              <FaGithub size={14} /> Code
-            </a>
-          )}
-        </div>
-        {/* === END: LIVE/GITHUB LINKS FIX === */}
 
+        {/* Buttons always at bottom */}
+        <div className="flex justify-start gap-4 mt-auto">
+          {/* Live Link */}
+          <a
+            href={proj.link || "#"}
+            onClick={(e) => e.stopPropagation()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm border transition duration-200
+              ${proj.link
+                ? "text-purple-300 bg-purple-600/20 hover:bg-purple-600/40 border-purple-500/50"
+                : "text-gray-500 bg-gray-700/10 cursor-not-allowed border-gray-500/20"}`
+            }
+          >
+            <FaExternalLinkAlt size={12} /> Live
+          </a>
+
+          {/* GitHub Link */}
+          <a
+            href={proj.github || "#"}
+            onClick={(e) => e.stopPropagation()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm border transition duration-200
+              ${proj.github
+                ? "text-gray-300 bg-gray-700/30 hover:bg-gray-700/50 border-gray-500/50"
+                : "text-gray-500 bg-gray-700/10 cursor-not-allowed border-gray-500/20"}`
+            }
+          >
+            <FaGithub size={14} /> Code
+          </a>
+        </div>
       </div>
     </motion.div>
   );
+};
 };
 
 
@@ -393,4 +394,5 @@ export default function Projects() {
     </section>
   );
 }
+
 
