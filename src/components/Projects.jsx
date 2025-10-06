@@ -6,7 +6,7 @@ import StarsCanvas from "./StarsCanvas";
 
 // Filters
 const techFilters = [
-  "All", "MERN", "Django", "React", "MongoDB", "PostgreSQL", 
+  "All", "MERN", "Django", "React", "MongoDB", "PostgreSQL",
   "JWT", "UI/UX", "PHP", "AI", "Three.js", "JavaScript", "HTML", "CSS","Next.js","TypeScript","Crypto"
 ];
 
@@ -22,16 +22,6 @@ const allProjects = [
   tags: ["MERN","MongoDB","React","JWT","AI"],
   image: "/projects/taskradar.png",
 },
-
-  // {
-  //   name: "EventX System",
-  //   desc: "College event platform with QR check-in, analytics, and role dashboards.",
-  //   full: "Built with Django + React. Faculty-based event creation, analytics, and role access control.",
-  //   link: "#",
-  //   github: "#",
-  //   tags: ["Django", "React", "UI/UX"],
-  //   image: "/projects/eventx.png",
-  // },
   {
     name: "TaskVault",
     desc: "Full-stack task manager with filters, theming, and JWT auth.",
@@ -113,16 +103,7 @@ const allProjects = [
   github: "https://github.com/khushi-1907/Portfolio", // Update if different
   tags: ["React", "Tailwind", "UI/UX"],
   image: "/projects/portfolio.jpg" // Replace with actual path to your preview image
-}, 
-// {
-//     name: "Momo Money Tech Adventure",
-//     desc: "A web game where you eat momos to earn, shop cute, and unlock your tech dream.",
-//     full: "A playful click-based game built using HTML, CSS, and JS. Players earn virtual money by eating momos, shop in a girly boutique, and unlock their dream tech internship while being motivated by quotes.",
-//     link: "https://momos-money-internship.vercel.app/", // Add your live link
-//     github: "https://github.com/khushi-1907/Momos-Money-Internship", // Add GitHub link
-//     tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
-//     image: "/projects/momo_money.jpg"
-//   },
+},
   {
     name: "Drunk-O-Meter Bar",
     desc: "Fun web app to track your virtual drinks and get animated drunk feedback.",
@@ -150,17 +131,75 @@ const allProjects = [
     tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
     image: "/projects/love_potion.jpg"
   },
-  // {
-  //   name: "The Trifecta of Joy",
-  //   desc: "Celebrate dance, sleep, and books with fun energy mechanics and animations.",
-  //   full: "Interactive HTML/CSS/JS site themed around balancing energy. Includes dance animations, sleep recharge, book recs, rotating facts, emoji feedback, and energy bar logic.",
-  //   link: "https://books-sleep-dance.vercel.app/", // Add live demo
-  //   github: "https://github.com/khushi-1907/Books-Sleep-Dance", // Add repo
-  //   tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
-  //   image: "/projects/trifecta_joy.jpg"
-  // }
-
 ];
+
+// Project Card component for clearer code and to apply the non-scroll animation
+const ProjectCard = ({ proj, onClick, i }) => {
+  // Animation variant for a staggered, immediate fade-in and slight lift
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.05 } },
+  };
+
+  return (
+    <motion.div
+      key={proj.name} // Key is added here to help Framer Motion track elements
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden" // Added exit for a smooth removal when filtering
+      role="button"
+      aria-label={`View details for ${proj.name}`}
+      whileHover={{ scale: 1.03 }}
+      className="group relative border border-white/10 bg-white/5 rounded-xl overflow-hidden shadow-xl backdrop-blur-md transition hover:shadow-purple-500/20 cursor-pointer h-full" // Added h-full
+      onClick={() => onClick(proj)}
+    >
+      <img
+        loading="lazy"
+        width="400"
+        height="176"
+        src={proj.image}
+        alt={proj.name}
+        className="w-full h-44 object-cover group-hover:scale-105 transition duration-300"
+      />
+      <div className="p-5">
+        <h3 className="text-xl font-semibold mb-1">{proj.name}</h3>
+        <p className="text-sm text-gray-300 mb-3">{proj.desc}</p>
+        <div className="flex flex-wrap gap-2 mb-3">
+          {proj.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs bg-purple-500/10 text-purple-300 px-2 py-1 rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className="flex justify-between items-center mt-3">
+          <a
+            href={proj.link}
+            onClick={(e) => e.stopPropagation()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-purple-300 text-sm hover:text-white flex items-center gap-1"
+          >
+            <FaExternalLinkAlt size={14} /> Live
+          </a>
+          <a
+            href={proj.github}
+            onClick={(e) => e.stopPropagation()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 text-sm hover:text-white flex items-center gap-1"
+          >
+            <FaGithub size={16} /> Code
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 
 export default function Projects() {
   const [selected, setSelected] = useState(null);
@@ -182,7 +221,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative text-white px-4 sm:px-8 py-24 z-10 overflow-hidden bg-[#030014]"
+      className="relative text-white px-4 sm:px-8 py-24 z-10 bg-[#030014] min-h-screen" // Added min-h-screen for guaranteed height
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10">
@@ -194,7 +233,7 @@ export default function Projects() {
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6 }}
         className="text-center mb-14"
       >
@@ -210,7 +249,7 @@ export default function Projects() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, delay: 0.2 }}
         className="flex flex-wrap justify-center gap-3 mb-14"
       >
@@ -251,75 +290,27 @@ export default function Projects() {
         ))}
       </motion.div>
 
-      {/* Projects Grid */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: false, amount: 0.2 }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-      >
-        {filteredProjects.map((proj, i) => (
-          <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5}>
-            <motion.div
-              role="button"
-              aria-label={`View details for ${proj.name}`}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
-              whileHover={{ scale: 1.03 }}
-              className="group relative border border-white/10 bg-white/5 rounded-xl overflow-hidden shadow-xl backdrop-blur-md transition hover:shadow-purple-500/20 cursor-pointer"
-              onClick={() => setSelected(proj)}
-            >
-              <img
-                loading="lazy"
-                width="400"
-                height="176"
-                src={proj.image}
-                alt={proj.name}
-                className="w-full h-44 object-cover group-hover:scale-105 transition duration-300"
-              />
-              <div className="p-5">
-                <h3 className="text-xl font-semibold mb-1">{proj.name}</h3>
-                <p className="text-sm text-gray-300 mb-3">{proj.desc}</p>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {proj.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs bg-purple-500/10 text-purple-300 px-2 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex justify-between items-center mt-3">
-                  <a
-                    href={proj.link}
-                    onClick={(e) => e.stopPropagation()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-purple-300 text-sm hover:text-white flex items-center gap-1"
-                  >
-                    <FaExternalLinkAlt size={14} /> Live
-                  </a>
-                  <a
-                    href={proj.github}
-                    onClick={(e) => e.stopPropagation()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 text-sm hover:text-white flex items-center gap-1"
-                  >
-                    <FaGithub size={16} /> Code
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </Tilt>
-        ))}
-      </motion.div>
+      {/* Projects Grid Container - KEY CHANGE */}
+      {/* Removed initial, whileInView, and transition to prevent the grid from being hidden by Intersection Observer issues on mobile. */}
+      {/* Added AnimatePresence to ensure smooth filter transitions. */}
+      <AnimatePresence mode="wait">
+        <motion.div
+            key={activeFilter} // Key change: forcing Framer Motion to re-render and animate on filter change
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+        >
+          {filteredProjects.map((proj, i) => (
+            <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1}>
+              <ProjectCard proj={proj} onClick={setSelected} i={i} />
+            </Tilt>
+          ))}
+        </motion.div>
+      </AnimatePresence>
 
-      {/* Modal */}
+      {/* Modal - Unchanged */}
       <AnimatePresence>
         {selected && (
           <motion.div
@@ -356,23 +347,4 @@ export default function Projects() {
                   href={selected.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-purple-500 px-4 py-2 rounded text-sm text-white font-semibold"
-                >
-                  Live
-                </a>
-                <a
-                  href={selected.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-800 px-4 py-2 rounded text-sm text-white"
-                >
-                  Code
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
-  );
-}
+  
