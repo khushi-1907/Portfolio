@@ -22,6 +22,7 @@ const allProjects = [
   tags: ["MERN","MongoDB","React","JWT","AI"],
   image: "/projects/taskradar.png",
 },
+
   {
     name: "TaskVault",
     desc: "Full-stack task manager with filters, theming, and JWT auth.",
@@ -133,25 +134,25 @@ const allProjects = [
   },
 ];
 
-// Project Card component for clearer code and to apply the non-scroll animation
+// Project Card component
 const ProjectCard = ({ proj, onClick, i }) => {
-  // Animation variant for a staggered, immediate fade-in and slight lift
+  // Simple fade-in and subtle lift animation, not dependent on scroll
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.05 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3, delay: i * 0.05 } },
   };
 
   return (
     <motion.div
-      key={proj.name} // Key is added here to help Framer Motion track elements
+      key={proj.name}
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      exit="hidden" // Added exit for a smooth removal when filtering
+      exit="hidden" // Ensure smooth exit when filtering
       role="button"
       aria-label={`View details for ${proj.name}`}
       whileHover={{ scale: 1.03 }}
-      className="group relative border border-white/10 bg-white/5 rounded-xl overflow-hidden shadow-xl backdrop-blur-md transition hover:shadow-purple-500/20 cursor-pointer h-full" // Added h-full
+      className="group relative border border-white/10 bg-white/5 rounded-xl overflow-hidden shadow-xl backdrop-blur-md transition hover:shadow-purple-500/20 cursor-pointer h-full"
       onClick={() => onClick(proj)}
     >
       <img
@@ -162,38 +163,46 @@ const ProjectCard = ({ proj, onClick, i }) => {
         alt={proj.name}
         className="w-full h-44 object-cover group-hover:scale-105 transition duration-300"
       />
-      <div className="p-5">
-        <h3 className="text-xl font-semibold mb-1">{proj.name}</h3>
-        <p className="text-sm text-gray-300 mb-3">{proj.desc}</p>
-        <div className="flex flex-wrap gap-2 mb-3">
-          {proj.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs bg-purple-500/10 text-purple-300 px-2 py-1 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
+      <div className="p-5 flex flex-col justify-between h-full"> {/* Use flex to push links to bottom */}
+        <div>
+          <h3 className="text-xl font-semibold mb-1">{proj.name}</h3>
+          <p className="text-sm text-gray-300 mb-3">{proj.desc}</p>
+          <div className="flex flex-wrap gap-2 mb-3">
+            {proj.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs bg-purple-500/10 text-purple-300 px-2 py-1 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
         <div className="flex justify-between items-center mt-3">
-          <a
-            href={proj.link}
-            onClick={(e) => e.stopPropagation()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-purple-300 text-sm hover:text-white flex items-center gap-1"
-          >
-            <FaExternalLinkAlt size={14} /> Live
-          </a>
-          <a
-            href={proj.github}
-            onClick={(e) => e.stopPropagation()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 text-sm hover:text-white flex items-center gap-1"
-          >
-            <FaGithub size={16} /> Code
-          </a>
+          {/* Live Link */}
+          {proj.link && (
+            <a
+              href={proj.link}
+              onClick={(e) => e.stopPropagation()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-300 text-sm hover:text-white flex items-center gap-1"
+            >
+              <FaExternalLinkAlt size={14} /> Live
+            </a>
+          )}
+          {/* GitHub Link */}
+          {proj.github && (
+            <a
+              href={proj.github}
+              onClick={(e) => e.stopPropagation()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 text-sm hover:text-white flex items-center gap-1"
+            >
+              <FaGithub size={16} /> Code
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
@@ -221,7 +230,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative text-white px-4 sm:px-8 py-24 z-10 bg-[#030014] min-h-screen" // Added min-h-screen for guaranteed height
+      className="relative text-white px-4 sm:px-8 py-24 z-10 bg-[#030014] min-h-screen"
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10">
@@ -229,7 +238,7 @@ export default function Projects() {
         <div className="absolute inset-0 bg-[#030014]/90 backdrop-blur-sm" />
       </div>
 
-      {/* Heading */}
+      {/* Heading - Keep initial whileInView for the whole section intro */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -245,7 +254,7 @@ export default function Projects() {
         </h2>
       </motion.div>
 
-      {/* Filters */}
+      {/* Filters - Keep initial whileInView for the whole section intro */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -263,24 +272,7 @@ export default function Projects() {
                   ? "bg-purple-500/30 text-purple-300 border-purple-500"
                   : "text-gray-400 border-purple-500/30 hover:bg-purple-500/10"
               }`}
-            animate={
-              activeFilter === filter
-                ? {
-                    scale: [1, 1.1, 1],
-                    boxShadow: [
-                      "0 0 0px rgba(128, 90, 213, 0)",
-                      "0 0 8px rgba(128, 90, 213, 0.6)",
-                      "0 0 0px rgba(128, 90, 213, 0)",
-                    ],
-                  }
-                : { scale: 1, boxShadow: "none" }
-            }
-            transition={{
-              duration: 1.2,
-              repeat: activeFilter === filter ? Infinity : 0,
-              repeatType: "loop",
-              ease: "easeInOut",
-            }}
+            // Removed infinite repeat animation for performance/simplicity
             whileTap={{ scale: 0.95 }}
             aria-pressed={activeFilter === filter}
             aria-label={`Filter projects by ${filter}`}
@@ -290,20 +282,29 @@ export default function Projects() {
         ))}
       </motion.div>
 
-      {/* Projects Grid Container - KEY CHANGE */}
-      {/* Removed initial, whileInView, and transition to prevent the grid from being hidden by Intersection Observer issues on mobile. */}
-      {/* Added AnimatePresence to ensure smooth filter transitions. */}
+      {/* Projects Grid Container - FINAL FIX */}
+      {/* The Projects Grid itself should rely on AnimatePresence with a key based on the filter. 
+          This ensures the list re-renders and is visible regardless of viewport size, fixing the mobile blank space issue. 
+          It also fixes the filter tabs not working.
+      */}
       <AnimatePresence mode="wait">
         <motion.div
-            key={activeFilter} // Key change: forcing Framer Motion to re-render and animate on filter change
+            key={activeFilter} // This key forces the component and its children to re-render, solving the filter problem
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20 }} // Simple fade-in animation for the whole list on filter change
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
         >
           {filteredProjects.map((proj, i) => (
-            <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1}>
+            <Tilt 
+              key={proj.name} // Use name as key for Tilt to preserve state
+              tiltMaxAngleX={5} 
+              tiltMaxAngleY={5} 
+              perspective={1000} 
+              scale={1}
+              className="h-full" // Ensure Tilt takes full height
+            >
               <ProjectCard proj={proj} onClick={setSelected} i={i} />
             </Tilt>
           ))}
@@ -347,4 +348,23 @@ export default function Projects() {
                   href={selected.link}
                   target="_blank"
                   rel="noopener noreferrer"
-  
+                  className="bg-purple-500 px-4 py-2 rounded text-sm text-white font-semibold"
+                >
+                  Live
+                </a>
+                <a
+                  href={selected.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-800 px-4 py-2 rounded text-sm text-white"
+                >
+                  Code
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
