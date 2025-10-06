@@ -314,59 +314,83 @@ export default function Projects() {
       </AnimatePresence>
 
       {/* Modal */}
-      <AnimatePresence>
-        {selected && (
-          <motion.div
-            className="fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-sm flex items-center justify-center z-[999]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-title"
-          >
-            <motion.div
-              className="relative bg-[#0e1320] max-w-lg w-[90%] rounded-xl p-6 border border-purple-500/20"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
+{/* Modal */}
+<AnimatePresence>
+  {selected && (
+    <motion.div
+      className="fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-sm flex items-center justify-center z-[999]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <motion.div
+        className="relative bg-[#0e1320] max-w-lg w-[90%] rounded-xl p-6 border border-purple-500/20"
+        initial={{ scale: 0.9 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.9 }}
+      >
+        {/* Close Button */}
+        <button
+          onClick={() => setSelected(null)}
+          className="absolute top-3 right-3 text-gray-400 hover:text-white"
+          aria-label="Close project modal"
+        >
+          <FaTimes size={20} />
+        </button>
+
+        {/* Modal Title */}
+        <h3 id="modal-title" className="text-xl font-bold text-purple-300 mb-3">
+          {selected.name}
+        </h3>
+
+        {/* Full Description */}
+        <p className="text-gray-300 text-sm mb-6 leading-relaxed">
+          {selected.full}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {selected.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs bg-purple-500/10 text-purple-300 px-2 py-1 rounded-full"
             >
-              <button
-                onClick={() => setSelected(null)}
-                className="absolute top-3 right-3 text-gray-400 hover:text-white"
-                aria-label="Close project modal"
-              >
-                <FaTimes size={20} />
-              </button>
-              <h3
-                id="modal-title"
-                className="text-xl font-bold text-purple-300 mb-3"
-              >
-                {selected.name}
-              </h3>
-              <p className="text-gray-300 text-sm mb-6">{selected.full}</p>
-              <div className="flex gap-4">
-                <a
-                  href={selected.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-purple-500 px-4 py-2 rounded text-sm text-white font-semibold"
-                >
-                  Live
-                </a>
-                <a
-                  href={selected.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-800 px-4 py-2 rounded text-sm text-white"
-                >
-                  Code
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Buttons */}
+        <div className="flex justify-start gap-4">
+          {selected.link && (
+            <a
+              href={selected.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-purple-600/20 hover:bg-purple-600/40 text-purple-300 border border-purple-500/50 px-4 py-2 rounded-lg text-sm transition duration-200"
+            >
+              <FaExternalLinkAlt size={14} /> Live
+            </a>
+          )}
+          {selected.github && (
+            <a
+              href={selected.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gray-700/30 hover:bg-gray-700/50 text-gray-300 border border-gray-500/50 px-4 py-2 rounded-lg text-sm transition duration-200"
+            >
+              <FaGithub size={16} /> Code
+            </a>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
     </section>
   );
 }
+
