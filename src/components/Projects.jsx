@@ -163,7 +163,7 @@ const ProjectCard = ({ proj, onClick, i }) => {
         alt={proj.name}
         className="w-full h-44 object-cover group-hover:scale-105 transition duration-300"
       />
-      <div className="p-5 flex flex-col justify-between h-full"> {/* Use flex to push links to bottom */}
+      <div className="p-5 flex flex-col justify-between h-full">
         <div>
           <h3 className="text-xl font-semibold mb-1">{proj.name}</h3>
           <p className="text-sm text-gray-300 mb-3">{proj.desc}</p>
@@ -178,6 +178,8 @@ const ProjectCard = ({ proj, onClick, i }) => {
             ))}
           </div>
         </div>
+        
+        {/* === START: LIVE/GITHUB LINKS FIX === */}
         <div className="flex justify-between items-center mt-3">
           {/* Live Link */}
           {proj.link && (
@@ -204,6 +206,8 @@ const ProjectCard = ({ proj, onClick, i }) => {
             </a>
           )}
         </div>
+        {/* === END: LIVE/GITHUB LINKS FIX === */}
+
       </div>
     </motion.div>
   );
@@ -238,7 +242,7 @@ export default function Projects() {
         <div className="absolute inset-0 bg-[#030014]/90 backdrop-blur-sm" />
       </div>
 
-      {/* Heading - Keep initial whileInView for the whole section intro */}
+      {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -254,7 +258,7 @@ export default function Projects() {
         </h2>
       </motion.div>
 
-      {/* Filters - Keep initial whileInView for the whole section intro */}
+      {/* Filters */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -282,28 +286,24 @@ export default function Projects() {
         ))}
       </motion.div>
 
-      {/* Projects Grid Container - FINAL FIX */}
-      {/* The Projects Grid itself should rely on AnimatePresence with a key based on the filter. 
-          This ensures the list re-renders and is visible regardless of viewport size, fixing the mobile blank space issue. 
-          It also fixes the filter tabs not working.
-      */}
+      {/* Projects Grid Container */}
       <AnimatePresence mode="wait">
         <motion.div
-            key={activeFilter} // This key forces the component and its children to re-render, solving the filter problem
+            key={activeFilter}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-            initial={{ opacity: 0, y: 20 }} // Simple fade-in animation for the whole list on filter change
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
         >
           {filteredProjects.map((proj, i) => (
             <Tilt 
-              key={proj.name} // Use name as key for Tilt to preserve state
+              key={proj.name}
               tiltMaxAngleX={5} 
               tiltMaxAngleY={5} 
               perspective={1000} 
               scale={1}
-              className="h-full" // Ensure Tilt takes full height
+              className="h-full"
             >
               <ProjectCard proj={proj} onClick={setSelected} i={i} />
             </Tilt>
@@ -311,7 +311,7 @@ export default function Projects() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Modal - Unchanged */}
+      {/* Modal */}
       <AnimatePresence>
         {selected && (
           <motion.div
@@ -365,6 +365,4 @@ export default function Projects() {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
-  );
-}
+    <
