@@ -179,30 +179,32 @@ const ProjectCard = ({ proj, onClick, i }) => {
           </div>
         </div>
         
-        {/* === START: LIVE/GITHUB LINKS FIX === */}
-        <div className="flex justify-between items-center mt-3">
-          {/* Live Link */}
+        {/* === START: LIVE/GITHUB LINKS FIX (Added styling) === */}
+        <div className="flex justify-start gap-4 items-center mt-4">
+          {/* Live Link Button */}
           {proj.link && (
             <a
               href={proj.link}
               onClick={(e) => e.stopPropagation()}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-purple-300 text-sm hover:text-white flex items-center gap-1"
+              // Added button styling classes
+              className="inline-flex items-center gap-2 text-purple-300 bg-purple-600/20 hover:bg-purple-600/40 px-3 py-1 rounded-lg text-sm transition duration-200 border border-purple-500/50"
             >
-              <FaExternalLinkAlt size={14} /> Live
+              <FaExternalLinkAlt size={12} /> Live
             </a>
           )}
-          {/* GitHub Link */}
+          {/* GitHub Link Button */}
           {proj.github && (
             <a
               href={proj.github}
               onClick={(e) => e.stopPropagation()}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 text-sm hover:text-white flex items-center gap-1"
+              // Added button styling classes
+              className="inline-flex items-center gap-2 text-gray-300 bg-gray-700/30 hover:bg-gray-700/50 px-3 py-1 rounded-lg text-sm transition duration-200 border border-gray-500/50"
             >
-              <FaGithub size={16} /> Code
+              <FaGithub size={14} /> Code
             </a>
           )}
         </div>
@@ -365,4 +367,6 @@ export default function Projects() {
           </motion.div>
         )}
       </AnimatePresence>
-    <
+    </section>
+  );
+}
