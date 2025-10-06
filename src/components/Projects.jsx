@@ -136,6 +136,7 @@ const allProjects = [
 
 // Project Card component
 const ProjectCard = ({ proj, onClick, i }) => {
+  // Simple fade-in and subtle lift animation, not dependent on scroll
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3, delay: i * 0.05 } },
@@ -147,7 +148,7 @@ const ProjectCard = ({ proj, onClick, i }) => {
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      exit="hidden"
+      exit="hidden" // Ensure smooth exit when filtering
       role="button"
       aria-label={`View details for ${proj.name}`}
       whileHover={{ scale: 1.03 }}
@@ -162,7 +163,7 @@ const ProjectCard = ({ proj, onClick, i }) => {
         alt={proj.name}
         className="w-full h-44 object-cover group-hover:scale-105 transition duration-300"
       />
-      <div className="p-5 flex flex-col h-full">
+      <div className="p-5 flex flex-col justify-between h-full">
         <div>
           <h3 className="text-xl font-semibold mb-1">{proj.name}</h3>
           <p className="text-sm text-gray-300 mb-3">{proj.desc}</p>
@@ -177,43 +178,41 @@ const ProjectCard = ({ proj, onClick, i }) => {
             ))}
           </div>
         </div>
-
-        {/* Buttons always at bottom */}
-        <div className="flex justify-start gap-4 mt-auto">
-          {/* Live Link */}
-          <a
-            href={proj.link || "#"}
-            onClick={(e) => e.stopPropagation()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm border transition duration-200
-              ${proj.link
-                ? "text-purple-300 bg-purple-600/20 hover:bg-purple-600/40 border-purple-500/50"
-                : "text-gray-500 bg-gray-700/10 cursor-not-allowed border-gray-500/20"}`
-            }
-          >
-            <FaExternalLinkAlt size={12} /> Live
-          </a>
-
-          {/* GitHub Link */}
-          <a
-            href={proj.github || "#"}
-            onClick={(e) => e.stopPropagation()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm border transition duration-200
-              ${proj.github
-                ? "text-gray-300 bg-gray-700/30 hover:bg-gray-700/50 border-gray-500/50"
-                : "text-gray-500 bg-gray-700/10 cursor-not-allowed border-gray-500/20"}`
-            }
-          >
-            <FaGithub size={14} /> Code
-          </a>
+        
+        {/* === LIVE/GITHUB LINKS (Styled as buttons) === */}
+        <div className="flex justify-start gap-4 items-center mt-4">
+          {/* Live Link Button */}
+          {proj.link && (
+            <a
+              href={proj.link}
+              onClick={(e) => e.stopPropagation()}
+              target="_blank"
+              rel="noopener noreferrer"
+              // Correct button styling
+              className="inline-flex items-center gap-2 text-purple-300 bg-purple-600/20 hover:bg-purple-600/40 px-3 py-1 rounded-lg text-sm transition duration-200 border border-purple-500/50"
+            >
+              <FaExternalLinkAlt size={12} /> Live
+            </a>
+          )}
+          {/* GitHub Link Button */}
+          {proj.github && (
+            <a
+              href={proj.github}
+              onClick={(e) => e.stopPropagation()}
+              target="_blank"
+              rel="noopener noreferrer"
+              // Correct button styling
+              className="inline-flex items-center gap-2 text-gray-300 bg-gray-700/30 hover:bg-gray-700/50 px-3 py-1 rounded-lg text-sm transition duration-200 border border-gray-500/50"
+            >
+              <FaGithub size={14} /> Code
+            </a>
+          )}
         </div>
+        {/* =========================================== */}
+
       </div>
     </motion.div>
   );
-};
 };
 
 
@@ -261,12 +260,8 @@ export default function Projects() {
         </h2>
       </motion.div>
 
-      {/* Filters */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+      {/* Filters - FIX APPLIED: Removed whileInView animation */}
+      <div
         className="flex flex-wrap justify-center gap-3 mb-14"
       >
         {techFilters.map((filter) => (
@@ -279,7 +274,25 @@ export default function Projects() {
                   ? "bg-purple-500/30 text-purple-300 border-purple-500"
                   : "text-gray-400 border-purple-500/30 hover:bg-purple-500/10"
               }`}
-            // Removed infinite repeat animation for performance/simplicity
+            // Added simple pulse animation on active filter
+            animate={
+              activeFilter === filter
+                ? {
+                    scale: [1, 1.05, 1],
+                    boxShadow: [
+                      "0 0 0px rgba(128, 90, 213, 0)",
+                      "0 0 8px rgba(128, 90, 213, 0.6)",
+                      "0 0 0px rgba(128, 90, 213, 0)",
+                    ],
+                  }
+                : { scale: 1, boxShadow: "none" }
+            }
+            transition={{
+              duration: 1.2,
+              repeat: activeFilter === filter ? Infinity : 0,
+              repeatType: "loop",
+              ease: "easeInOut",
+            }}
             whileTap={{ scale: 0.95 }}
             aria-pressed={activeFilter === filter}
             aria-label={`Filter projects by ${filter}`}
@@ -287,9 +300,9 @@ export default function Projects() {
             {filter}
           </motion.button>
         ))}
-      </motion.div>
+      </div>
 
-      {/* Projects Grid Container */}
+      {/* Projects Grid Container (Filter logic intact) */}
       <AnimatePresence mode="wait">
         <motion.div
             key={activeFilter}
@@ -315,84 +328,59 @@ export default function Projects() {
       </AnimatePresence>
 
       {/* Modal */}
-{/* Modal */}
-<AnimatePresence>
-  {selected && (
-    <motion.div
-      className="fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-sm flex items-center justify-center z-[999]"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      <motion.div
-        className="relative bg-[#0e1320] max-w-lg w-[90%] rounded-xl p-6 border border-purple-500/20"
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.9 }}
-      >
-        {/* Close Button */}
-        <button
-          onClick={() => setSelected(null)}
-          className="absolute top-3 right-3 text-gray-400 hover:text-white"
-          aria-label="Close project modal"
-        >
-          <FaTimes size={20} />
-        </button>
-
-        {/* Modal Title */}
-        <h3 id="modal-title" className="text-xl font-bold text-purple-300 mb-3">
-          {selected.name}
-        </h3>
-
-        {/* Full Description */}
-        <p className="text-gray-300 text-sm mb-6 leading-relaxed">
-          {selected.full}
-        </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {selected.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs bg-purple-500/10 text-purple-300 px-2 py-1 rounded-full"
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            className="fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-sm flex items-center justify-center z-[999]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+          >
+            <motion.div
+              className="relative bg-[#0e1320] max-w-lg w-[90%] rounded-xl p-6 border border-purple-500/20"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
             >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Buttons */}
-        <div className="flex justify-start gap-4">
-          {selected.link && (
-            <a
-              href={selected.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-purple-600/20 hover:bg-purple-600/40 text-purple-300 border border-purple-500/50 px-4 py-2 rounded-lg text-sm transition duration-200"
-            >
-              <FaExternalLinkAlt size={14} /> Live
-            </a>
-          )}
-          {selected.github && (
-            <a
-              href={selected.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gray-700/30 hover:bg-gray-700/50 text-gray-300 border border-gray-500/50 px-4 py-2 rounded-lg text-sm transition duration-200"
-            >
-              <FaGithub size={16} /> Code
-            </a>
-          )}
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-3 right-3 text-gray-400 hover:text-white"
+                aria-label="Close project modal"
+              >
+                <FaTimes size={20} />
+              </button>
+              <h3
+                id="modal-title"
+                className="text-xl font-bold text-purple-300 mb-3"
+              >
+                {selected.name}
+              </h3>
+              <p className="text-gray-300 text-sm mb-6">{selected.full}</p>
+              <div className="flex gap-4">
+                <a
+                  href={selected.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-purple-500 px-4 py-2 rounded text-sm text-white font-semibold"
+                >
+                  Live
+                </a>
+                <a
+                  href={selected.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-800 px-4 py-2 rounded text-sm text-white"
+                >
+                  Code
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
-
-
