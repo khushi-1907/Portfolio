@@ -32,8 +32,12 @@ const Starfield = () => {
 };
 
 const StarsCanvas = () => (
-  <div className="fixed inset-0 z-10 pointer-events-none">
-    <Canvas camera={{ position: [0, 0, 1] }} gl={{ alpha: true }}>
+  <div className="fixed inset-0 -z-10 pointer-events-none">
+    <Canvas
+      camera={{ position: [0, 0, 1] }}
+      gl={{ alpha: true }}
+      style={{ pointerEvents: "none" }}
+    >
       <Suspense fallback={null}>
         <Starfield />
       </Suspense>
@@ -41,6 +45,5 @@ const StarsCanvas = () => (
     </Canvas>
   </div>
 );
-
 
 export default StarsCanvas;
