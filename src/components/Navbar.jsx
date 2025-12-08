@@ -16,7 +16,7 @@ const socials = [
   },
 ];
 
-const navLinks = ["About", "Skills", "Projects", "Connect"];
+const navLinks = ["About", "Skills", "Projects", "Certifications", "Connect"];
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -141,3 +141,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
