@@ -31,7 +31,7 @@ const timeline = [
 
 export default function AboutMe() {
   return (
-    <section id="about-me" className="relative text-white px-4 sm:px-8 py-24 z-10 overflow-hidden bg-[#030014]">
+    <section id="about" className="relative text-white px-4 sm:px-8 py-24 z-10 overflow-hidden bg-[#030014]">
       {/* 🌌 Star Background */}
       <div className="absolute inset-0 -z-10">
         <StarsCanvas />
@@ -135,3 +135,4 @@ export default function AboutMe() {
     </section>
   );
 }
+
