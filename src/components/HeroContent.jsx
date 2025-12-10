@@ -6,7 +6,7 @@ import { slideInFromLeft, slideInFromRight } from "../utils/motion";
 const stacks = [
   "MERN",
   "React.js",
-  "Node.js",
+  "Next.js",
   "Django",
   "JWT Auth",
   "MongoDB",

@@ -51,7 +51,7 @@ const Navbar = () => {
         </div>
 
         {/* 🧭 Desktop Navigation */}
-        <nav className="hidden md:flex items-center text-sm font-medium bg-[#1a1a2d5e] border border-[#7042f861] px-10 py-2 rounded-full shadow-md gap-10 lg:gap-16">
+        <nav className="hidden md:flex items-center text-sm font-medium bg-[#1a1a2d5e] border border-[#7042f861] px-7 py-2 rounded-full shadow-md gap-10 lg:gap-15">
           {navLinks.map((link) => {
             const id = link.toLowerCase();
             const isActive = activeLink === id;

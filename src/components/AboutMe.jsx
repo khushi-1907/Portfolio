@@ -83,54 +83,54 @@ export default function AboutMe() {
       </div>
 
       {/* 🕒 Timeline */}
-{/* 🕒 Timeline */}
-<VerticalTimeline lineColor="#6B21A8">
-  {timeline.map((item, i) => (
-    <motion.div
-      key={i}
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.3 }}
-      transition={{ duration: 0.6, delay: i * 0.2 }}
-      whileHover={{ scale: 1.02 }}
-      className="mb-12" // 👈 added spacing between cards
-    >
-      <VerticalTimelineElement
-        contentStyle={{
-          background: "rgba(255,255,255,0.03)",
-          backdropFilter: "blur(8px)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          boxShadow: `0 0 20px ${item.color}40`,
-          transition: "all 0.3s ease",
-        }}
-        contentArrowStyle={{ borderRight: "7px solid #6B21A8" }}
-        date={item.year}
-        iconStyle={{
-          background: "#111827",
-          boxShadow: `0 0 12px ${item.color}`,
-        }}
-        icon={
-          <div className="flex justify-center items-center w-full h-full">
-            <img
-              src={item.logo}
-              alt={item.institution}
-              className="w-10 h-10 object-contain rounded-full"
-            />
-          </div>
-        }
-        position={i % 2 === 0 ? "right" : "left"}
-      >
-        <h3 className="text-white text-lg font-semibold">{item.title}</h3>
-        <p className="text-sm text-purple-400 mt-1">{item.institution}</p>
-        {/* <ul className="mt-3 list-disc ml-5 space-y-1 text-sm text-gray-300">
+      {/* 🕒 Timeline */}
+      <VerticalTimeline lineColor="#6B21A8">
+        {timeline.map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: i * 0.2 }}
+            whileHover={{ scale: 1.02 }}
+            className="mb-12" // 👈 added spacing between cards
+          >
+            <VerticalTimelineElement
+              contentStyle={{
+                background: "rgba(255,255,255,0.03)",
+                backdropFilter: "blur(8px)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                boxShadow: `0 0 20px ${item.color}40`,
+                transition: "all 0.3s ease",
+              }}
+              contentArrowStyle={{ borderRight: "7px solid #6B21A8" }}
+              date={item.year}
+              iconStyle={{
+                background: "#111827",
+                boxShadow: `0 0 12px ${item.color}`,
+              }}
+              icon={
+                <div className="flex justify-center items-center w-full h-full">
+                  <img
+                    src={item.logo}
+                    alt={item.institution}
+                    className="w-10 h-10 object-contain rounded-full"
+                  />
+                </div>
+              }
+              position={i % 2 === 0 ? "right" : "left"}
+            >
+              <h3 className="text-white text-lg font-semibold">{item.title}</h3>
+              <p className="text-sm text-purple-400 mt-1">{item.institution}</p>
+              {/* <ul className="mt-3 list-disc ml-5 space-y-1 text-sm text-gray-300">
           {item.desc.map((d, idx) => (
             <li key={idx}>{d}</li>
           ))}
         </ul> */}
-      </VerticalTimelineElement>
-    </motion.div>
-  ))}
-</VerticalTimeline>
+            </VerticalTimelineElement>
+          </motion.div>
+        ))}
+      </VerticalTimeline>
 
     </section>
   );

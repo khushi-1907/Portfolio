@@ -15,17 +15,21 @@ import {
   SiPostman,
   SiBootstrap,
   SiPhp,
+  SiNextdotjs,
 } from "react-icons/si";
+import { TbRobot } from "react-icons/tb"; // LLM icon
 
 const skills = [
+  { name: "Next.js", icon: <SiNextdotjs className="text-black" /> },
   { name: "React", icon: <FaReact className="text-cyan-400" /> },
   { name: "Node.js", icon: <FaNodeJs className="text-green-400" /> },
+  { name: "Python", icon: <FaPython className="text-blue-300" /> },
+  { name: "Integrating LLMs", icon: <TbRobot className="text-purple-400" /> },
   { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
   { name: "Django", icon: <SiDjango className="text-emerald-300" /> },
-  { name: "Tailwind", icon: <SiTailwindcss className="text-sky-400" /> },
   { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" /> },
+  { name: "Tailwind", icon: <SiTailwindcss className="text-sky-400" /> },
   { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
-  { name: "Python", icon: <FaPython className="text-blue-300" /> },
   { name: "Postman", icon: <SiPostman className="text-orange-300" /> },
   { name: "Bootstrap", icon: <SiBootstrap className="text-purple-400" /> },
   { name: "PHP", icon: <SiPhp className="text-indigo-300" /> },
