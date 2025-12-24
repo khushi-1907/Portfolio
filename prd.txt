@@ -1,0 +1,56 @@
+# Product Requirement Document (PRD): Personal Portfolio Website
+
+## 1. Executive Summary
+A modern, high-performance personal portfolio website for Ruchi Kumari, a Full-Stack Developer. The site showcases skills, projects, certifications, and educational background using advanced web technologies and a "deep-space" aesthetic.
+
+## 2. Goals & Objectives
+- **Professional Presence**: Establish a strong online presence for recruitment and networking.
+- **Showcase Expertise**: Highlight technical skills in MERN, Next.js, Django, and 3D web development.
+- **Interactive Experience**: Provide an engaging user experience with animations, 3D elements, and micro-interactions.
+- **Performance**: Ensure fast loading times and smooth transitions.
+
+## 3. Technology Stack
+- **Framework**: Next.js 15 (App Router)
+- **Language**: JavaScript / React
+- **Styling**: Tailwind CSS (via CDN configuration)
+- **3D Graphics**: Three.js, @react-three/fiber, @react-three/drei
+- **Animations**: Framer Motion
+- **Icons**: Lucide React, React Icons, Heroicons
+- **Interactivity**: Custom Canvas-based "ClickSpark" effect
+
+## 4. Key Features
+
+### 4.1 UI/UX Design
+- **Theme**: Deep-space / Dark-space theme (`#030014`).
+- **Backgrounds**: 
+  - Dynamic 3D Starfield background using Three.js Points.
+  - Interactive "Blackhole" video header with parallax/poster fallback.
+- **Interactions**:
+  - Global click-spark particle effect.
+  - Glassmorphic navigation bar with scroll-spy.
+  - Interactive "Tilt" effects on cards (skills, projects, certifications).
+
+### 4.2 Content Sections
+- **Hero**: Introduces Ruchi Kumari with a typewriter effect highlighting key tech stacks (MERN, Next.js, etc.).
+- **About Me**: Narrative summary and a vertical timeline showcasing educational milestones (ICSE, Diploma, B.Tech).
+- **Skills**: Interactive grid of technical skill badges with icons and tilt effects.
+- **Projects**: Filterable gallery of work, featuring categories like MERN, Django, AI, and 3D. Each project includes a description, tech tags, and links to live demos/GitHub.
+- **Certifications**: Filterable accomplishments, including Virtual Experiences, Training, and Hackathons.
+- **Footer/Connect**: Social links (LinkedIn, GitHub) and email contact.
+
+## 5. Functional Requirements
+- **Responsive Design**: The site must be fully functional and visually appealing on mobile, tablet, and desktop.
+- **Filter Systems**: Projects and Certifications must support client-side filtering by technology or category.
+- **Typewriter Effect**: The Hero section must cycle through a list of tech stacks dynamically.
+- **Scroll Spy**: The navigation menu must update the "active" link based on the user's current scroll position.
+- **Performance**: Assets (videos, 3D points) must be optimized to prevent lag on lower-end devices.
+
+## 6. Non-Functional Requirements
+- **Accessibility**: Use semantic HTML (header, section, footer) for better screen reader support.
+- **SEO**: Include meta titles and descriptions for search engine indexing.
+- **Compatibility**: Support modern browsers (Chrome, Firefox, Safari, Edge).
+
+## 7. Future Roadmap
+- **Blog Integration**: Add a section for technical articles or dev logs.
+- **Dark/Light Mode**: Optional toggle for user preference.
+- **Contact Form**: Direct messaging integration (e.g., Formspree or custom API).

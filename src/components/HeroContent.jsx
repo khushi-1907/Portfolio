@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { slideInFromLeft, slideInFromRight } from "../utils/motion";
@@ -75,6 +77,7 @@ export default function HeroContent() {
           <motion.a
             href="#projects"
             variants={slideInFromLeft(0.1)}
+            aria-label="View my work projects"
             className="relative inline-flex items-center justify-center px-6 py-2 rounded-lg max-w-[200px] font-medium text-white transition duration-300 group"
           >
             {/* Glow on hover */}

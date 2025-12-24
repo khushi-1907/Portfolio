@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
@@ -5,9 +7,13 @@ import * as random from "maath/random/dist/maath-random.esm";
 
 const Starfield = () => {
   const ref = useRef();
-  const [points] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 })
-  );
+  const [points] = useState(() => {
+    const data = random.inSphere(new Float32Array(5001), { radius: 1.2 });
+    for (let i = 0; i < data.length; i++) {
+      if (isNaN(data[i])) data[i] = 0;
+    }
+    return data;
+  });
 
   useFrame((_s, d) => {
     if (ref.current) {
