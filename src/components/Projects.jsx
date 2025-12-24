@@ -42,7 +42,7 @@ const allProjects = [
         name: "Solar System 3D Simulation",
         desc: "Responsive 3D solar system built with Three.js and vanilla JavaScript with interactive controls.",
         tags: ["Three.js", "JavaScript", "UI/UX"],
-        link: "https://khushi-1907.github.io/SolarSystem/",
+        link: "https://solar-system-two-dun.vercel.app/",
         github: "https://github.com/khushi-1907/SolarSystem",
         image: "/projects/solar_system.jpg"
     },
@@ -210,3 +210,4 @@ const Projects = () => {
 };
 
 export default Projects;
+
