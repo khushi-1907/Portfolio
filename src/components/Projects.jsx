@@ -74,7 +74,7 @@ const allProjects = [
         name: "Extension Manager UI",
         desc: "Responsive UI for managing browser extensions, built as a Frontend Mentor challenge.",
         tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
-        link: "https://extension-frontend.vercel.app/,
+        link: "https://extension-frontend.vercel.app/",
         github: "https://github.com/khushi-1907/ExtensionFrontend",
         image: "/projects/extension_manager_ui.jpg"
     },
@@ -210,5 +210,6 @@ const Projects = () => {
 };
 
 export default Projects;
+
 
 
