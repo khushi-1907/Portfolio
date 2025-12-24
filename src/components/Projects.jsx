@@ -66,7 +66,7 @@ const allProjects = [
         name: "Netflix Frontend Clone",
         desc: "A sleek frontend clone of Netflix with responsive design and modern UI using HTML, CSS, JavaScript.",
         tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
-        link: "https://khushi-1907.github.io/Netflix-UI-Clone-Demo/",
+        link: "https://ott-ui-landing-page.vercel.app/",
         github: "https://github.com/khushi-1907/Netflix-UI-Clone-Demo/",
         image: "/projects/netflix_clone.jpg"
     },
@@ -74,7 +74,7 @@ const allProjects = [
         name: "Extension Manager UI",
         desc: "Responsive UI for managing browser extensions, built as a Frontend Mentor challenge.",
         tags: ["HTML", "CSS", "JavaScript", "UI/UX"],
-        link: "https://khushi-1907.github.io/ExtensionFrontend/",
+        link: "https://extension-frontend.vercel.app/,
         github: "https://github.com/khushi-1907/ExtensionFrontend",
         image: "/projects/extension_manager_ui.jpg"
     },
@@ -210,4 +210,5 @@ const Projects = () => {
 };
 
 export default Projects;
+
 
