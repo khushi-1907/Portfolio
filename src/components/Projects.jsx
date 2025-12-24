@@ -7,6 +7,14 @@ import { ExternalLink, Github, Layers } from "lucide-react";
 
 const allProjects = [
     {
+        name: "Password Vault",
+        desc: "Next.js-based password generator and secure vault with encryption and MongoDB.",
+        tags: ["Next.js", "TypeScript", "MongoDB", "Crypto", "JWT"],
+        link: "https://password-vault-beta.vercel.app/",
+        github: "https://github.com/khushi-1907/Password-Vault",
+        image: "/projects/passwordvault.jpg"
+    },
+    {
         name: "TaskRadar",
         desc: "Smart MERN planner with AI tips, drag-and-drop weekly view, Pomodoro, notes, and productivity analytics.",
         tags: ["MERN", "MongoDB", "React", "JWT", "AI"],
@@ -21,14 +29,6 @@ const allProjects = [
         link: "https://task-vault-rosy.vercel.app",
         github: "https://github.com/khushi-1907/Task-Vault",
         image: "/projects/taskvault.jpg"
-    },
-    {
-        name: "Password Vault",
-        desc: "Next.js-based password generator and secure vault with encryption and MongoDB.",
-        tags: ["Next.js", "TypeScript", "MongoDB", "Crypto", "JWT"],
-        link: "https://password-vault-beta.vercel.app/",
-        github: "https://github.com/khushi-1907/Password-Vault",
-        image: "/projects/passwordvault.jpg"
     },
     {
         name: "RosyWrite Notepad",
