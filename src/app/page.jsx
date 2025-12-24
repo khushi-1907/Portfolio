@@ -9,6 +9,7 @@ import Certifications from "../components/Certifications";
 import Footer from "../components/Footer";
 import ClickSpark from "../components/ClickSpark";
 
+
 export default function Home() {
     return (
         <>

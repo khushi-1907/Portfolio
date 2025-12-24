@@ -1,4 +1,6 @@
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "My Portfolio",
@@ -35,6 +37,8 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-[#030014] text-white overflow-x-hidden overflow-y-scroll" suppressHydrationWarning>
         <div id="root">{children}</div>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
