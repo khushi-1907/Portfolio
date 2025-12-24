@@ -31,6 +31,14 @@ const allProjects = [
         image: "/projects/taskvault.jpg"
     },
     {
+        name: "Sammunat LLC – Landing Page",
+        desc: "A modern, conversion-focused landing page designed for a multinational IT services company, emphasizing clear value proposition, trust-building sections, and lead generation with a scalable, responsive UI.",
+        tags: ["Next.js", "React", "Tailwind CSS", "UI/UX"],
+        link: "https://sammunat-llc-landing-page.vercel.app/",
+        github: "https://github.com/khushi-1907/Sammunat-LLC-Landing-Page",
+        image: "/projects/sammunat_landing_page.png"
+    },
+    {
         name: "RosyWrite Notepad",
         desc: "Secure, distraction-free notes app with JWT auth and user dashboard using MERN stack.",
         tags: ["Node.js", "JWT", "MongoDB", "UI/UX"],
