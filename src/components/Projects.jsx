@@ -19,7 +19,7 @@ const allProjects = [
         desc: "Full-stack task manager with filters, theming, and JWT auth built with React and Django.",
         tags: ["React", "Django", "PostgreSQL", "JWT"],
         link: "https://task-vault-rosy.vercel.app",
-        github: "https://github.com/khushi-1907/Task_Vault",
+        github: "https://github.com/khushi-1907/Task-Vault",
         image: "/projects/taskvault.jpg"
     },
     {
