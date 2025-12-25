@@ -13,10 +13,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-         <Script 
-          src="https://cdn.tailwindcss.com" 
-          strategy="afterInteractive"
-        />
+        <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
       </head>
       <body className="bg-[#030014] text-white overflow-x-hidden overflow-y-scroll" suppressHydrationWarning>
         <div id="root">{children}</div>
