@@ -12,6 +12,8 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Temporary: Tailwind CDN for dev — remove before deployment for better FCP/TTFB */}
+        <script src="https://cdn.tailwindcss.com"></script>
       </head>
       <body className="bg-[#030014] text-white overflow-x-hidden overflow-y-scroll" suppressHydrationWarning>
         <div id="root">{children}</div>
