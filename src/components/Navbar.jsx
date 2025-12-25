@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const socials = [
     {
@@ -78,7 +79,7 @@ const Navbar = () => {
                             aria-label={`Visit my ${s.name} profile`}
                             className="hover:scale-110 transition-transform duration-300"
                         >
-                            <img src={s.src} alt={s.name} className="w-5 h-5" style={{ width: '20px', height: '20px' }} />
+                            <Image src={s.src} alt={s.name} width={20} height={20} />
                         </a>
                     ))}
                 </div>
@@ -124,7 +125,7 @@ const Navbar = () => {
                         <div className="flex gap-4 pt-4">
                             {socials.map((s) => (
                                 <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer">
-                                    <img src={s.src} alt={s.name} className="w-5 h-5" style={{ width: '20px', height: '20px' }} />
+                                    <Image src={s.src} alt={s.name} width={20} height={20} />
                                 </a>
                             ))}
                         </div>

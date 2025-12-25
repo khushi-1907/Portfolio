@@ -56,7 +56,15 @@ export default function HeroContent() {
             className="text-4xl font-bold text-white md:text-6xl"
           >
             Hi, I’m{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-500 bg-clip-text text-transparent">
+            <span
+              style={{
+                background: "linear-gradient(to right, #a78bfa, #06b6d4)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                display: "inline-block",
+              }}
+            >
               Ruchi Kumari
             </span>
           </motion.h1>

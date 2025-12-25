@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import {
     VerticalTimeline,
     VerticalTimelineElement,
@@ -67,7 +68,7 @@ const AboutMe = () => {
                                 date={item.date}
                                 iconStyle={{ background: "#fff", color: "#fff", display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}
                                 icon={
-                                    <img src={item.icon} alt={item.institution} className="w-full h-full object-contain p-1" />
+                                    <Image src={item.icon} alt={item.institution} width={56} height={56} className="p-1 object-contain" />
                                 }
                             >
                                 <h4 className="vertical-timeline-element-title text-xl font-bold">

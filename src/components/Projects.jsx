@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Tilt from "react-parallax-tilt";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, Layers } from "lucide-react";
@@ -36,7 +37,7 @@ const allProjects = [
         tags: ["Next.js", "React", "Tailwind CSS", "UI/UX"],
         link: "https://sammunat-llc-landing-page.vercel.app/",
         github: "https://github.com/khushi-1907/Sammunat-LLC-Landing-Page",
-        image: "/projects/sammunat_landing_page.png"
+        image: "/projects/sammunat_landing_page.webp"
     },
     {
         name: "RosyWrite Notepad",
@@ -89,7 +90,7 @@ const allProjects = [
     {
         name: "Developer Portfolio",
         desc: "Animated, responsive developer portfolio with starfield background and glassmorphic sections.",
-        tags: ["React", "Tailwind", "UI/UX"],
+        tags: ["React", "Tailwind", "UI/UX","Three.js"],
         link: "#",
         github: "https://github.com/khushi-1907/Portfolio",
         image: "/projects/portfolio.jpg"
@@ -177,10 +178,12 @@ const Projects = () => {
                                 >
                                     <div className="h-44 bg-gray-800 relative overflow-hidden">
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
-                                        <img
+                                        <Image
                                             src={proj.image}
                                             alt={proj.name}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            fill
+                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                            sizes="(max-width: 1024px) 50vw, 33vw"
                                         />
                                         <div className="absolute top-4 right-4 z-20 flex gap-2">
                                             <a href={proj.github} target="_blank" rel="noreferrer" className="p-2 bg-black/60 rounded-full hover:bg-purple-600 transition-colors backdrop-blur-sm">
