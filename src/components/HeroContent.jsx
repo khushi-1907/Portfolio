@@ -83,16 +83,18 @@ export default function HeroContent() {
 
           {/* 🚀 CTA Button */}
           <motion.a
-            href="#projects"
+            href="/resume.pdf"
+            download="Resume.pdf"
             variants={slideInFromLeft(0.1)}
-            aria-label="View my work projects"
+            aria-label="Download Resume"
             className="relative inline-flex items-center justify-center px-6 py-2 rounded-lg max-w-[200px] font-medium text-white transition duration-300 group"
           >
             {/* Glow on hover */}
             <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-cyan-500 opacity-20 group-hover:opacity-40 blur-md transition duration-300" />
 
             {/* Button content */}
-            <span className="relative z-10 flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-300">
+            <span className="relative z-10 flex items-center gap-2 group-hover:translate-y-1 transition-transform duration-300">
+              {/* REPLACE THIS FILE: /public/resume.pdf */}
               <svg
                 className="h-5 w-5 text-cyan-200"
                 fill="none"
@@ -100,10 +102,10 @@ export default function HeroContent() {
                 strokeWidth="2"
                 viewBox="0 0 24 24"
               >
-                <path d="M5 12h14M13 5l7 7-7 7" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               <span className="text-cyan-200 tracking-wide">
-                View&nbsp;My&nbsp;Work
+                Download&nbsp;Resume
               </span>
             </span>
           </motion.a>
