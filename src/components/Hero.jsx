@@ -3,6 +3,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import HeroContent from "./HeroContent";
+import OptimizedVideo from "./OptimizedVideo";
 
 const StarsCanvas = dynamic(() => import("./StarsCanvas"), {
     ssr: false,
@@ -18,28 +19,23 @@ const Hero = () => {
             {/* 🔮 Purple fallback background */}
             <div className="absolute inset-0 -z-30 bg-[#030014]" />
 
+
             {/* 🌌 Blackhole Video */}
-            <video
-                id="hero-video"
-                autoPlay
-                muted
-                loop
-                playsInline
+            <OptimizedVideo
+                src="/blackhole.webm"
                 poster="/blackhole-poster.jpg"
-                preload="metadata"
                 className="absolute left-0 w-full min-h-[120vh] object-cover z-[-1]"
                 style={{
                     top: "calc(65px - 110vh + 50%)",
                     transform: "scaleY(-1)",
                 }}
-            >
-                <source src="/blackhole.webm" type="video/webm" />
-            </video>
+            />
 
             {/* ✨ Starfield Canvas (dynamic loader) */}
             <div className="absolute inset-0 -z-10 pointer-events-none">
                 <StarsCanvas />
             </div>
+
 
             {/* 👩‍💻 Foreground Content */}
             <div className="relative z-20 h-full flex items-center justify-center px-4">

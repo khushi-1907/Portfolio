@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useRef, useState, Suspense } from "react";
+import React, { useRef, useState, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
+import { useDeviceCapabilities } from "../utils/useDeviceCapabilities";
+
 
 const Starfield = () => {
   const ref = useRef();
@@ -37,19 +39,35 @@ const Starfield = () => {
   );
 };
 
-const StarsCanvas = () => (
-  <div className="fixed inset-0 -z-10 pointer-events-none">
-    <Canvas
-      camera={{ position: [0, 0, 1] }}
-      gl={{ alpha: true }}
-      style={{ pointerEvents: "none" }}
-    >
-      <Suspense fallback={null}>
-        <Starfield />
-      </Suspense>
-      <Preload all />
-    </Canvas>
-  </div>
-);
+
+const StarsCanvas = () => {
+  const { gpuTier, isMobile } = useDeviceCapabilities();
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    // Delay loading 3D content until after LCP
+    const timer = setTimeout(() => setEnabled(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!enabled || isMobile || gpuTier < 1) return null; // Disable completely on mobile for performance
+
+  return (
+    <div className="fixed inset-0 -z-10 pointer-events-none">
+      <Canvas
+        camera={{ position: [0, 0, 1] }}
+        gl={{ alpha: true, antialias: false, powerPreference: "default" }} // Disable antialias for perf
+        style={{ pointerEvents: "none" }}
+        dpr={[1, 1.5]} // Cap DPR to 1.5
+      >
+        <Suspense fallback={null}>
+          <Starfield />
+        </Suspense>
+        <Preload all />
+      </Canvas>
+    </div>
+  );
+};
+
 
 export default StarsCanvas;
