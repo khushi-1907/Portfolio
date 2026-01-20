@@ -46,7 +46,7 @@ const StarsCanvas = () => {
 
   useEffect(() => {
     // Delay loading 3D content until after LCP
-    const timer = setTimeout(() => setEnabled(true), 2000);
+    const timer = setTimeout(() => setEnabled(true), 1000);
     return () => clearTimeout(timer);
   }, []);
 

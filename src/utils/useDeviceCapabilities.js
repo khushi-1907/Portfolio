@@ -25,7 +25,7 @@ export function useDeviceCapabilities() {
 
     // Detect Hardware Concurrency (CPU Cores)
     const cores = navigator.hardwareConcurrency || 4;
-    const isLowPowerCPU = cores <= 4;
+    const isLowPowerCPU = cores < 4;
 
     // Determine GPU Tier (Heuristic)
     // iOS devices are generally powerful but strict on memory/WebGL contexts
